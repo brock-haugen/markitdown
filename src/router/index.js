@@ -6,15 +6,21 @@ Vue.use(Router)
 
 const checkAuth = () => !!localStorage.getItem(settings.authToken)
 
-import Home from 'views/FirebaseDemo'
+import List from 'views/List'
+import Mark from 'views/Mark'
 
 let router = new Router({
   mode: 'history',
   routes: [
     {
+      path: '/mark/:id',
+      name: 'Mark',
+      component: Mark
+    },
+    {
       path: '/',
       name: 'Home',
-      component: Home
+      component: List
     }
   ]
 })
