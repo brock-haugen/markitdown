@@ -14,16 +14,16 @@ export default {
   name: 'List',
   firebase () {
     return {
-      marks: this.$db.ref('marks')
+      marks: this.$db.ref('marks/' + this.authUser.userId)
     }
   },
   methods: {
     create () {
-      const key = this.$firebaseRefs.marks.push('# New Mark').key
+      const key = this.$firebaseRefs.marks.push({ content: '# New Mark' }).key
       this.$router.push({name: 'Mark', params: {id: key}})
     },
     title (mark) {
-      const firstLine = ((mark['.value'] || '').split('\n')[0] || '').replace('#', '').trim()
+      const firstLine = ((mark.content || '').split('\n')[0] || '').replace(/#/g, '').trim()
       if (firstLine.length < 1) return 'blank mark'
       else return firstLine
     }

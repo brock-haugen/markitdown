@@ -1,10 +1,10 @@
 <template>
   <div id='mark'>
     <div class='split'>
-      <Editor :content='mark[".value"]' @save='save' />
+      <Editor :content='mark.content' @save='save' />
     </div>
     <div class='split'>
-      <Preview :content='mark[".value"]' />
+      <Preview :content='mark.content' />
     </div>
   </div>
 </template>
@@ -20,13 +20,13 @@ export default {
     return {
       mark: {
         asObject: true,
-        source: this.$db.ref('marks/' + this.$route.params.id)
+        source: this.$db.ref('marks/' + this.authUser.userId + '/' + this.$route.params.id)
       }
     }
   },
   methods: {
     save (text) {
-      this.$firebaseRefs.mark.set(text)
+      this.$firebaseRefs.mark.set({ content: text })
     }
   }
 }

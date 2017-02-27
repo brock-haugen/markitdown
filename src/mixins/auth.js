@@ -64,7 +64,8 @@ const getProfile = () => {
       email: profile.email,
       name: profile.name,
       nickname: profile.nickname,
-      picture: profile.picture
+      picture: profile.picture,
+      userId: profile.user_id
     }
 
     const options = {

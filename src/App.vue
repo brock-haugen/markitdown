@@ -1,17 +1,8 @@
 <template>
   <div id='app'>
-    <!-- navigation -->
     <Navigation />
-    <!-- router view (content) -->
-    <div v-if='isAuthenticated && authUser'>
-      <router-view></router-view>
-    </div>
-    <div v-else-if='isCheckingAuth'>
-      Loading...
-    </div>
-    <div v-else>
-      <h3 style='text-align: center;'>Welcome! Please <el-button type='text' @click='login()'><h3>login</h3></el-button></h3>
-    </div>
+    <span v-if='isCheckingAuth'>Loading...</span>
+    <router-view v-else></router-view>
   </div>
 </template>
 
