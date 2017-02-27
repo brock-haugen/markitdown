@@ -34,23 +34,24 @@ export default {
 
 <style scoped>
 #mark {
-  bottom: 4%;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: calc(4em + 4%);
+  height: calc(92vh - 8em);
+  margin: 0 -4%;
+  position: relative;
 }
 .split {
   bottom: 0;
-  left: 0;
   position: absolute;
-  right: 50%;
-  top: 0;
+  top: -30px;
   vertical-align: top;
+}
+.split:first-child {
+  left: calc(4% - 30px);
+  right: calc(50% + 30px);
 }
 .split:last-child {
   border-left: solid 1px #EFEFEF;
   left: calc(50% + 1px);
-  right: 0;
+  padding-left: calc(4% - 30px);
+  right: calc(4% - 30px);
 }
 </style>

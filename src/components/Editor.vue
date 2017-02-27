@@ -29,7 +29,7 @@ export default {
   width: 100%;
 }
 textarea {
-  padding: 0 30px;
+  padding: 30px;
   height: calc(100% - 60px);
   width: calc(100% - 60px);
 }

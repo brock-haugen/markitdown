@@ -26,17 +26,15 @@ export default {
 
 <style>
 html, body {
-  color: #2c3e50;
+  color: #2C3E50;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  height: 100%;
   margin: 0;
   padding: 0;
-  width: 100%;
 }
 
 #app {
-  height: calc(90% - 8em);
-  padding: calc(4em + 4%) 4%;
+  margin: 4%;
+  margin-top: calc(4% + 4em);
   position: relative;
   width: 92%;
   -webkit-font-smoothing: antialiased;
