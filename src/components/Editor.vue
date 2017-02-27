@@ -29,8 +29,8 @@ export default {
   width: 100%;
 }
 textarea {
-  padding: 1em;
-  height: calc(100% - 2em);
-  width: calc(100% - 2em);
+  padding: 0 30px;
+  height: calc(100% - 60px);
+  width: calc(100% - 60px);
 }
 </style>

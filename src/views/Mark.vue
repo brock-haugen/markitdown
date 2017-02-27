@@ -35,9 +35,9 @@ export default {
 <style scoped>
 #mark {
   bottom: 4%;
-  left: 4%;
+  left: 0;
   position: absolute;
-  right: 4%;
+  right: 0;
   top: calc(4em + 4%);
 }
 .split {

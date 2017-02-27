@@ -2,7 +2,7 @@
   <div id='navigation'>
     <router-link to='/' id='home-nav'>
       <img src='../assets/logo.png'>
-      <h4>test</h4>
+      <h4>markitdown</h4>
     </router-link>
     <div id='auth-nav'>
       <el-dropdown v-if='isAuthenticated && authUser' trigger='click'>
@@ -41,6 +41,7 @@ export default {
   vertical-align: middle;
 }
 #navigation h4 {
+  cursor: pointer;
   display: inline-block;
   margin: 0;
 }
