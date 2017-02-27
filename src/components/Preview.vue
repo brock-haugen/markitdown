@@ -9,14 +9,20 @@ import marked from 'marked'
 
 export default {
   name: 'Preview',
-  props: [ 'mark' ],
+  props: [ 'content' ],
   computed: {
     markedHTML () {
-      return marked(this.mark.content || '')
+      return marked(this.content || '')
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
+.preview {
+  padding: 0 1em;
+}
+code {
+  background-color: #EFEFEF;
+}
 </style>

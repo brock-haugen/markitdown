@@ -25,15 +25,20 @@ export default {
 </script>
 
 <style>
-body {
+html, body {
   color: #2c3e50;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  height: 100%;
   margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 #app {
+  height: calc(90% - 8em);
   padding: calc(4em + 4%) 4%;
   position: relative;
+  width: 92%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

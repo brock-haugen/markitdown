@@ -1,8 +1,11 @@
 <template>
   <div id='mark'>
-    <h2>{{ mark.title }}</h2>
-    <Editor :mark='mark' @save='save' />
-    <Preview :mark='mark' />
+    <div class='split'>
+      <Editor :content='mark[".value"]' @save='save' />
+    </div>
+    <div class='split'>
+      <Preview :content='mark[".value"]' />
+    </div>
   </div>
 </template>
 
@@ -23,11 +26,31 @@ export default {
   },
   methods: {
     save (text) {
-      this.$firebaseRefs.mark.update({content: text})
+      this.$firebaseRefs.mark.set(text)
     }
   }
 }
 </script>
 
 <style scoped>
+#mark {
+  bottom: 4%;
+  left: 4%;
+  position: absolute;
+  right: 4%;
+  top: calc(4em + 4%);
+}
+.split {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 50%;
+  top: 0;
+  vertical-align: top;
+}
+.split:last-child {
+  border-left: solid 1px #EFEFEF;
+  left: calc(50% + 1px);
+  right: 0;
+}
 </style>

@@ -28,7 +28,7 @@ export default {
 
 <style>
 #navigation {
-  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  border-bottom: solid 1px #EFEFEF;
   left: 0;
   padding: 1em 4%;
   position: fixed;

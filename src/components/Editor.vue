@@ -1,22 +1,36 @@
 <template>
   <div class='editor'>
-    <textarea :value='mark.content'></textarea>
-    <el-button type='success' @click='save()'>Save</el-button>
+    <textarea :value='content' @input='save'></textarea>
   </div>
 </template>
 
 <script>
+import _ from 'underscore'
+
 export default {
   name: 'Editor',
-  props: [ 'mark' ],
+  props: [ 'content' ],
   methods: {
-    save () {
-      const text = this.$el.querySelectorAll('textarea')[0].value
+    save: _.debounce(function (e) {
+      const text = e.target.value
       this.$emit('save', text)
-    }
+    }, 300)
   }
 }
 </script>
 
 <style scoped>
+.editor, textarea {
+  border: none;
+  font-family: 'Monaco', courier, monospace;
+  height: 100%;
+  outline: none;
+  resize: none;
+  width: 100%;
+}
+textarea {
+  padding: 1em;
+  height: calc(100% - 2em);
+  width: calc(100% - 2em);
+}
 </style>
