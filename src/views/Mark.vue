@@ -46,7 +46,8 @@ export default {
 }
 .split:first-child {
   left: calc(4% - 30px);
-  right: calc(50% + 30px);
+  padding-right: calc(4% - 30px);
+  right: 50%;
 }
 .split:last-child {
   border-left: solid 1px #EFEFEF;
