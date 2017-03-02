@@ -4,7 +4,10 @@
       <i class='el-icon-menu'></i>
     </span>
     <div id='list-panel'>
-      <router-link v-for='mark in marks' :to='{name: "Mark", params: {id: mark[".key"]}}'>{{ title(mark) }}</router-link>
+      <router-link v-for='mark in marks' :to='{name: "Mark", params: {id: mark[".key"]}}'>
+        <span>{{ title(mark) }}</span>
+        <i @click.prevent.stop='destroy(mark)' class='delete-link el-icon-delete'></i>
+      </router-link>
       <br>
       <el-button @click='create()'>+ New</el-button>
     </div>
@@ -33,6 +36,17 @@ export default {
     create () {
       const key = this.$firebaseRefs.marks.push({ content: '# New Mark' }).key
       this.$router.push({name: 'Mark', params: {id: key}})
+    },
+    destroy (mark) {
+      const key = mark['.key']
+      this.$firebaseRefs.marks.update({[key]: null})
+      if (this.$route.params.id === key) {
+        if (this.marks.length > 0) {
+          this.$router.push({name: 'Mark', params: {id: this.marks[0]['.key']}})
+        } else {
+          this.$router.push('/')
+        }
+      }
     },
     title (mark) {
       const firstLine = ((mark.content || '').split('\n')[0] || '').replace(/#/g, '').trim()
@@ -91,6 +105,7 @@ export default {
       overflow: hidden;
       margin: 0 -20px;
       padding: 0 20px;
+      position: relative;
       text-decoration: none;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -103,6 +118,15 @@ export default {
       }
       &:not(:last-of-type) {
         border-bottom: none;
+      }
+
+      .delete-link {
+        position: absolute;
+        right: 20px;
+        top: 10px;
+      }
+      &:not(:hover) .delete-link {
+        display: none;
       }
     }
   }
