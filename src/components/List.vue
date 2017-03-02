@@ -4,7 +4,7 @@
       <i class='el-icon-menu'></i>
     </span>
     <div id='list-panel'>
-      <router-link v-for='mark in marks' :to='{name: "Mark", params: {id: mark[".key"]}}'>
+      <router-link v-for='mark in sortedMarks' :to='{name: "Mark", params: {id: mark[".key"]}}'>
         <span>{{ title(mark) }}</span>
         <i @click.prevent.stop='destroy(mark)' class='delete-link el-icon-delete'></i>
       </router-link>
@@ -27,6 +27,11 @@ export default {
       marks: this.$db.ref('marks/' + this.authUser.userId)
     }
   },
+  computed: {
+    sortedMarks () {
+      return this.marks.sort((a, b) => b.updated - a.updated)
+    }
+  },
   watch: {
     $route () {
       this.isOpen = false
@@ -34,15 +39,18 @@ export default {
   },
   methods: {
     create () {
-      const key = this.$firebaseRefs.marks.push({ content: '# New Mark' }).key
+      const key = this.$firebaseRefs.marks.push({
+        content: '# New Mark',
+        updated: (new Date()).getTime()
+      }).key
       this.$router.push({name: 'Mark', params: {id: key}})
     },
     destroy (mark) {
       const key = mark['.key']
       this.$firebaseRefs.marks.update({[key]: null})
       if (this.$route.params.id === key) {
-        if (this.marks.length > 0) {
-          this.$router.push({name: 'Mark', params: {id: this.marks[0]['.key']}})
+        if (this.sortedMarks.length > 0) {
+          this.$router.push({name: 'Mark', params: {id: this.sortedMarks[0]['.key']}})
         } else {
           this.$router.push('/')
         }

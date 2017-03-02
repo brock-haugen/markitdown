@@ -31,7 +31,10 @@ export default {
       this.$bindAsObject('mark', this.$db.ref('marks/' + this.authUser.userId + '/' + this.$route.params.id))
     },
     save (text) {
-      this.$firebaseRefs.mark.set({ content: text })
+      this.$firebaseRefs.mark.set({
+        content: text,
+        updated: (new Date()).getTime()
+      })
     }
   },
   mounted () {
@@ -42,12 +45,12 @@ export default {
 
 <style lang='scss' scoped>
 #mark {
-  height: calc(92vh - 8em);
+  height: calc(92vh - 6em);
   margin: 0 -4%;
   position: relative;
 
   .split {
-    bottom: 0;
+    bottom: -30px;
     position: absolute;
     top: -30px;
     vertical-align: top;
@@ -58,7 +61,7 @@ export default {
     right: 50%;
   }
   .split:last-child {
-    border-left: solid 1px #EFEFEF;
+    border-left: solid 1px cadetblue;
     left: calc(50% + 1px);
     padding-left: calc(4% - 30px);
     right: calc(4% - 30px);
