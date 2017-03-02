@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang='scss'>
-@import 'assets/font-awesome/css/font-awesome.css';
+@import '/static/font-awesome/css/font-awesome.css';
 
 html, body {
   color: #2C3E50;

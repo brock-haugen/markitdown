@@ -2,13 +2,13 @@ import highlightjs from 'highlightjs'
 import 'highlightjs/styles/github.css'
 import MarkdownIt from 'markdown-it'
 import markdownItCheckbox from 'markdown-it-checkbox'
-import markdownItIcons from 'markdown-it-icons'
+import markdownItFA from 'markdown-it-fontawesome'
 
 const md = MarkdownIt({
   highlight: code => highlightjs.highlightAuto(code).value
 })
 md.use(markdownItCheckbox)
-md.use(markdownItIcons, 'font-awesome')
+md.use(markdownItFA)
 
 export default {
   methods: {
