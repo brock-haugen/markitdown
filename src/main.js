@@ -27,7 +27,7 @@ new Vue({
       }
     },
     link: [
-      { rel: 'shortcut icon', href: require('./assets/logo.png') }
+      { rel: 'shortcut icon', href: require('./assets/logo.svg') }
     ],
     meta: [
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }

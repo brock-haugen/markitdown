@@ -1,7 +1,7 @@
 <template>
   <div id='navigation'>
     <router-link to='/' id='home-nav'>
-      <img src='../assets/logo.png'>
+      <div id='logo'></div>
       <h4>markitdown</h4>
     </router-link>
     <div id='auth-nav'>
@@ -35,7 +35,11 @@ export default {
   right: 0;
   top: 0;
 }
-#navigation img {
+#navigation #logo {
+  background-image: url('../assets/logo.svg');
+  background-position: center;
+  background-size: 200%;
+  display: inline-block;
   height: 30px;
   width: 30px;
   vertical-align: middle;
@@ -55,5 +59,8 @@ export default {
 }
 #navigation #auth-nav img {
   border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  vertical-align: middle;
 }
 </style>
