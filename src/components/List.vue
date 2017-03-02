@@ -5,7 +5,7 @@
     </span>
     <div id='list-panel'>
       <router-link v-for='mark in sortedMarks' :to='{name: "Mark", params: {id: mark[".key"]}}'>
-        <span>{{ title(mark) }}</span>
+        <span v-html='title(mark)'></span>
         <i @click.prevent.stop='destroy(mark)' class='delete-link el-icon-delete'></i>
       </router-link>
       <br>
@@ -15,8 +15,11 @@
 </template>
 
 <script>
+import MdMixin from 'mixins/markdown'
+
 export default {
   name: 'List',
+  mixins: [ MdMixin ],
   data () {
     return {
       isOpen: false
@@ -59,13 +62,13 @@ export default {
     title (mark) {
       const firstLine = ((mark.content || '').split('\n')[0] || '').replace(/#/g, '').trim()
       if (firstLine.length < 1) return 'blank mark'
-      else return firstLine
+      else return this.renderMd(firstLine)
     }
   }
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
 #list {
   background-color: white;
   border-right: solid 1px cadetblue;
@@ -126,6 +129,11 @@ export default {
       }
       &:not(:last-of-type) {
         border-bottom: none;
+      }
+
+      span * {
+        margin-bottom: 0;
+        margin-top: 0;
       }
 
       .delete-link {
