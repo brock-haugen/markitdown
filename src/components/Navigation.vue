@@ -26,41 +26,47 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss'>
 #navigation {
-  border-bottom: solid 1px #EFEFEF;
+  background-color: white;
+  border-bottom: solid 1px cadetblue;
   left: 0;
   padding: 1em 4%;
   position: fixed;
   right: 0;
   top: 0;
-}
-#navigation #logo {
-  background-image: url('../assets/logo.svg');
-  background-position: center;
-  background-size: 200%;
-  display: inline-block;
-  height: 30px;
-  width: 30px;
-  vertical-align: middle;
-}
-#navigation h4 {
-  cursor: pointer;
-  display: inline-block;
-  margin: 0;
-}
-#navigation #home-nav {
-  color: inherit;
-  text-decoration: none;
-}
-#navigation #auth-nav {
-  cursor: pointer;
-  float: right;
-}
-#navigation #auth-nav img {
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  vertical-align: middle;
+  z-index: 1;
+
+  #logo {
+    background-image: url('../assets/logo.svg');
+    background-position: center;
+    background-size: 200%;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+  }
+
+  h4 {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+  }
+
+  #home-nav {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #auth-nav {
+    cursor: pointer;
+    float: right;
+    img {
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      vertical-align: middle;
+    }
+  }
 }
 </style>

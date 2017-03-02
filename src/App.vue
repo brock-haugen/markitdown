@@ -1,17 +1,22 @@
 <template>
   <div id='app'>
+    <List v-if='isAuthenticated' />
     <Navigation />
-    <span v-if='isCheckingAuth'>Loading...</span>
-    <router-view v-else></router-view>
+
+    <div id='content'>
+      <span v-if='isCheckingAuth'>Loading...</span>
+      <router-view v-else></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+import List from 'components/List'
 import Navigation from 'components/Navigation'
 
 export default {
   name: 'app',
-  components: { Navigation }
+  components: { List, Navigation }
 }
 </script>
 
@@ -30,5 +35,14 @@ html, body {
   width: 92%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 1280px) {
+  #list { left: 0 !important; }
+  #list-toggle { display: none; }
+  #content {
+    margin-left: 300px;
+    width: calc(100% - 300px);
+  }
 }
 </style>
