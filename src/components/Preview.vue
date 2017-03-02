@@ -5,18 +5,22 @@
 <script>
 import highlightjs from 'highlightjs'
 import 'highlightjs/styles/github.css'
-import marked from 'marked'
+import MarkdownIt from 'markdown-it'
+import markdownItCheckbox from 'markdown-it-checkbox'
+import markdownItIcons from 'markdown-it-icons'
 
-marked.setOptions({
+const md = MarkdownIt({
   highlight: code => highlightjs.highlightAuto(code).value
 })
+md.use(markdownItCheckbox)
+md.use(markdownItIcons, 'font-awesome')
 
 export default {
   name: 'Preview',
   props: [ 'content' ],
   computed: {
     markedHTML () {
-      return marked(this.content || '')
+      return md.render(this.content || '')
     }
   }
 }

@@ -20,7 +20,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss'>
+@import 'assets/font-awesome/css/font-awesome.css';
+
 html, body {
   color: #2C3E50;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
