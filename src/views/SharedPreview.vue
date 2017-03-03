@@ -21,3 +21,15 @@ export default {
   }
 }
 </script>
+
+<style lang='scss'>
+#shared-preview {
+  margin: -30px;
+  text-align: center;
+
+  .preview {
+    display: inline-block;
+    text-align: left;
+  }
+}
+</style>

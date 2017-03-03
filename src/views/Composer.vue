@@ -91,12 +91,13 @@ export default {
 <style lang='scss'>
 #composer {
   #content {
-    height: calc(92vh - 6em);
+    height: calc(92vh - 110px);
     margin: 0 -4%;
     position: relative;
 
     .split {
       bottom: -30px;
+      overflow: auto;
       position: absolute;
       top: -30px;
       vertical-align: top;
@@ -111,6 +112,10 @@ export default {
       left: calc(50% + 1px);
       padding-left: calc(4% - 30px);
       right: calc(4% - 30px);
+    }
+
+    .editor {
+      height: 99%;
     }
   }
 
