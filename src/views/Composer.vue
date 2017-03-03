@@ -22,7 +22,10 @@ export default {
   components: { Editor, List, Preview },
   firebase () {
     return {
-      marks: this.$db.ref('marks/' + this.authUser.userId)
+      marks: {
+        asArray: true,
+        source: this.$db.ref('marks/' + this.authUser.userId)
+      }
     }
   },
   computed: {
@@ -34,20 +37,35 @@ export default {
       return this.marks.sort((a, b) => b.updated - a.updated)
     }
   },
+  watch: {
+    $route () {
+      this.setInitial()
+    }
+  },
   methods: {
+    goto (key) {
+      if (key) {
+        this.$router.push({name: 'Composer', params: {id: key}})
+      }
+    },
+    setInitial () {
+      if (!this.$route.params.id && this.sortedMarks.length > 0) {
+        this.goto(this.sortedMarks[0]['.key'])
+      }
+    },
     create () {
       const key = this.$firebaseRefs.marks.push({
         content: '# New Mark',
         updated: (new Date()).getTime()
       }).key
-      this.$router.push({name: 'Composer', params: {id: key}})
+      this.goto(key)
     },
     destroy (mark) {
       const key = mark['.key']
-      this.$firebaseRefs.marks.update({[key]: null})
+      this.$firebaseRefs.marks.child(key).remove()
       if (this.$route.params.id === key) {
         if (this.sortedMarks.length > 0) {
-          this.$router.push({name: 'Composer', params: {id: this.sortedMarks[0]['.key']}})
+          this.goto(this.sortedMarks[0]['.key'])
         } else {
           this.$router.push('/')
         }
@@ -62,6 +80,10 @@ export default {
         }
       })
     }
+  },
+  mounted () {
+    // using this until VueFire 1.3.2
+    this.$firebaseRefs.marks.once('value', this.setInitial)
   }
 }
 </script>
