@@ -5,8 +5,11 @@
     </span>
     <div id='list-panel'>
       <router-link v-for='mark in marks' :to='{name: "Composer", params: {id: mark[".key"]}}'>
-        <span v-html='title(mark)'></span>
-        <i @click.prevent.stop='$emit("destroy", mark)' class='delete-link el-icon-delete'></i>
+        <span class='title' v-html='title(mark)'></span>
+        <span class='links'>
+          <i @click.prevent.stop='share(mark)' class='fa fa-share'></i>
+          <i @click.prevent.stop='$emit("destroy", mark)' class='fa fa-trash-o'></i>
+        </span>
       </router-link>
       <br>
       <el-button @click='$emit("create")'>+ New</el-button>
@@ -34,6 +37,10 @@ export default {
     }
   },
   methods: {
+    share (mark) {
+      const url = '/' + this.authUser.userId + '/' + mark['.key']
+      window.open(url, '_blank')
+    },
     title (mark) {
       const firstLine = ((mark.content || '').split('\n')[0] || '').replace(/#/g, '').trim()
       if (firstLine.length < 1) return 'blank mark'
@@ -88,13 +95,10 @@ export default {
       display: block;
       height: 40px;
       line-height: 40px;
-      overflow: hidden;
       margin: 0 -20px;
       padding: 0 20px;
       position: relative;
       text-decoration: none;
-      text-overflow: ellipsis;
-      white-space: nowrap;
 
       &:hover {
         background-color: #fcb;
@@ -106,17 +110,29 @@ export default {
         border-bottom: none;
       }
 
-      span * {
-        margin-bottom: 0;
-        margin-top: 0;
-      }
+      .title {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
 
-      .delete-link {
-        position: absolute;
-        right: 20px;
-        top: 10px;
+        * {
+          margin-bottom: 0;
+          margin-top: 0;
+        }
       }
-      &:not(:hover) .delete-link {
+      &:hover .title { width: calc(100% - 50px); }
+
+      .links {
+        position: absolute;
+        right: 10px;
+        top: 0px;
+        i {
+          margin: 0 0.25em;
+        }
+      }
+      &:not(:hover) .links {
         display: none;
       }
     }
