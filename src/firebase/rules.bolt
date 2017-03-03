@@ -6,12 +6,22 @@ path / {
   write() { isSignedIn() }
 }
 
+path /marks/{uid}/{mid} is Mark {
+  read() { true }
+  write() { isCurrentUser(uid) }
+}
+
 path /users/{uid} is User {
   read() { isSignedIn() }
   write() { isSignedIn() && (createOnly(this) || isCurrentUser(uid)) }
 }
 
 // TYPES
+
+type Mark {
+  content: String,
+  updated: Number
+}
 
 type User {
   email: String,
